@@ -16,7 +16,7 @@ height_max = 3.0  # m -> To filter out possible LiDAR noise
 height_lidar = 0.200
 
 print("--------START--------")
-for num in range(0, 1):
+for num in range(0, 32):
 	training_folder_name = "training_00" + "{:02d}".format(num)
 	training_folder = os.path.join(master_folder, training_folder_name)
 	segment_files_name = sorted(os.listdir(training_folder), 

@@ -55,12 +55,30 @@ if not os.path.exists(master_save_folder_double): os.makedirs(master_save_folder
 # the rest
 
 
-train_training_segfolder_inputs = dict()
-train_training_segfolder_inputs["training_0000"] = [0]
 test_training_segfolder_inputs = dict()
-test_training_segfolder_inputs["training_0000"] = [0]
+test_training_segfolder_inputs["training_0000"] = [2, 3, 6, 9, 16]
+test_training_segfolder_inputs["training_0001"] = [2, 6]
+test_training_segfolder_inputs["training_0002"] = [2, 18, 19]
+test_training_segfolder_inputs["training_0003"] = [3, 16, 23, 24]
+test_training_segfolder_inputs["training_0005"] = [15]
+test_training_segfolder_inputs["training_0006"] = [1, 8, 13, 20]
+test_training_segfolder_inputs["training_0007"] = [1]
+# the rest
+
 val_training_segfolder_inputs = dict()
-val_training_segfolder_inputs["training_0000"] = [0]
+val_training_segfolder_inputs["training_0000"] = [7, 11, 18, 23]
+val_training_segfolder_inputs["training_0001"] = [0, 4, 5, 8, 20]
+val_training_segfolder_inputs["training_0002"] = [3, 5, 9, 22]
+val_training_segfolder_inputs["training_0003"] = [2, 5, 13]
+val_training_segfolder_inputs["training_0005"] = [2, 10, 16, 23]
+
+train_training_segfolder_inputs = dict()
+train_training_segfolder_inputs["training_0003"] = [14, 15, 17, 22]
+train_training_segfolder_inputs["training_0004"] = [1, 12, 17]
+train_training_segfolder_inputs["training_0005"] = [11, 12, 18, 24]
+train_training_segfolder_inputs["training_0006"] = [16, 17, 19, 23, 25]
+train_training_segfolder_inputs["training_0007"] = [3, 4, 19]
+train_training_segfolder_inputs["training_0008"] = [9]
 
 # get not_train list:
 train_trainingfolder_segfolder = []
@@ -105,32 +123,32 @@ test_max = 119
 val_max = 79
 
 
-# while val_count < val_max:
-# 	train_folder = 0
-# 	train_folder_name = "training_00" + "{:02d}".format(train_folder)
-# 	# print(train_folder_name)
-# 	segment_files = sorted(os.listdir(os.path.join(master_folder, train_folder_name)),
-# 		key = lambda y: int(y.split("_")[0]))
-# 	seg_pos = randint(0, len(segment_files) - 1)
-# 	name = os.path.join(train_folder_name, segment_files[seg_pos])
-# 	if name not in all_segments:
-# 		splits["val"].append(name)
-# 		all_segments.add(name)
-# 		val_count += 1
-#
-# while test_count < test_max:
-# 	train_folder = 0
-# 	train_folder_name = "training_00" + "{:02d}".format(train_folder)
-# 	segment_files = sorted(os.listdir(os.path.join(master_folder, train_folder_name)),
-# 		key = lambda y: int(y.split("_")[0]))
-# 	seg_pos = randint(0, len(segment_files) - 1)
-# 	name = os.path.join(train_folder_name, segment_files[seg_pos])
-# 	if name not in all_segments:
-# 		splits["test"].append(name)
-# 		all_segments.add(name)
-# 		test_count += 1
+while val_count < val_max:
+	train_folder = randint(0, 31)
+	train_folder_name = "training_00" + "{:02d}".format(train_folder)
+	# print(train_folder_name)
+	segment_files = sorted(os.listdir(os.path.join(master_folder, train_folder_name)),
+		key = lambda y: int(y.split("_")[0]))
+	seg_pos = randint(0, len(segment_files) - 1)
+	name = os.path.join(train_folder_name, segment_files[seg_pos])
+	if name not in all_segments:
+		splits["val"].append(name)
+		all_segments.add(name)
+		val_count += 1
 
-for num in range(0, 1): # only training_0000 and training_0001
+while test_count < test_max:
+	train_folder = randint(0, 31)
+	train_folder_name = "training_00" + "{:02d}".format(train_folder)
+	segment_files = sorted(os.listdir(os.path.join(master_folder, train_folder_name)),
+		key = lambda y: int(y.split("_")[0]))
+	seg_pos = randint(0, len(segment_files) - 1)
+	name = os.path.join(train_folder_name, segment_files[seg_pos])
+	if name not in all_segments:
+		splits["test"].append(name)
+		all_segments.add(name)
+		test_count += 1
+
+for num in range(0, 2): # only training_0000 and training_0001
 	training_folder_name = "training_00" + "{:02d}".format(num)
 	training_folder = os.path.join(master_folder, training_folder_name)
 

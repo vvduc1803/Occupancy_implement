@@ -25,7 +25,7 @@ dist_threshold_pedestrian = speed_threshold_pedestrian * update_rate
 sign_check = True
 
 print("--------START--------")
-for num in range(0, 1):
+for num in range(0, 32):
 	training_folder_name = "training_00" + "{:02d}".format(num)
 	training_folder_path = os.path.join(master_folder, training_folder_name)
 	tfrecord_files_list = sorted(os.listdir(training_folder_path))

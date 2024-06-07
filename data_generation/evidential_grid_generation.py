@@ -24,7 +24,7 @@ cells_y = 128
 print("-------------START--------------")
 
 
-for num in range(0, 1):
+for num in range(0, 32):
 	training_folder_name = "training_00" + "{:02d}".format(num)
 	training_folder = os.path.join(master_folder, training_folder_name)
 	save_folder = os.path.join(master_folder, training_folder_name)
